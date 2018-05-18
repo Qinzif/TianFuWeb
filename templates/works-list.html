@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}天釜有品 - 天釜共享在线网{% endblock %}
+
+{% block custom_bread %}
+    <section>
+        <div class="wp">
+            <ul  class="crumbs">
+                <li><a href="/">首页</a>></li>
+                <li>天釜有品：天釜作品展示平台</li>
+            </ul>
+        </div>
+    </section>
+{% endblock %}
+
+{% block content %}
+<section>
+	<div class="wp butler_list_box list">
+	    <div class='left'>
+		<div class="all">共<span class="key">{{ work_nums }}</span>个作品</div>
+		<div class="butler_list company list">
+		<div class="layout">
+			<div class="head">
+				<ul class="tab_header">
+					<li class="active"><a href="?">全部</a> </li>
+				</ul>
+			</div>
+            {% for work in all_works.object_list %}
+
+                <dl class="des difdes" style="height: 300px">
+                    <h2>{{ work.title }}</h2><br/>
+                        {% for pic in work.get_works_workpics%}
+
+                            <img width="220" height="150" class="scrollLoading" src="{{ MEDIA_URL }}{{ pic.image }}"/>
+                        {% endfor %}
+                <ul class="cont">
+                    <li class="first"><p class="pic9">作品名称：<span>{{ work.title }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;</span></p><p class="c7">作者：<span>{{ work.author }}</span></p></li>
+                    <li class="c8" style="padding-left:18px;">作品介绍：</li>
+                    <p class="" style="padding-left:22px;font-size: 16px"><span>{{ work.points |safe  }}</span></p>
+                </ul>
+                </dl>
+
+            {% endfor %}
+		</div>
+        <div class="pageturn">
+            <ul class="pagelist">
+                {% if all_works.has_previous %}
+                <li class="long"><a href="?{{ all_works.previous_page_number.querystring }}">上一页</a></li>
+                {% endif %}
+                {% for page in all_works.pages %}
+                    {% if page %}
+                        {% ifequal page all_works.number %}
+                            <li class="active"><a href="?{{ page.querystring }}">{{ page }}</a></li>
+                            {% else %}
+                            <li><a href="?{{ page.querystring }}" class="page">{{ page }}</a></li>
+                        {% endifequal %}
+                     {% else %}
+                        <li class="none"><a href="">...</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if all_works.has_next %}
+                <li class="long"><a href="?{{ all_works.next_page_number.querystring }}">下一页</a></li>
+                {% endif %}
+
+            </ul>
+        </div>
+		</div>
+		</div>
+	</div>
+    </div>
+</section>
+{% endblock %}

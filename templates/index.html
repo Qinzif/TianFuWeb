@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+{% block title %}课程列表页 - 天釜共享在线网{% endblock %}
+
+{% block custom_bread %}
+{% endblock %}
+
+{% block content %}
+    <div class="banner">
+			<div class="wp">
+				<div class="fl">
+					<div class="imgslide">
+						<ul class="imgs">
+                            {% for banner in all_banners %}
+                            <li>
+                                    <a href="#">
+                                        <img width="1200" height="478" src="{{ MEDIA_URL }}{{ banner.image }}" />
+                                    </a>
+                                </li>
+                            {% endfor %}
+						</ul>
+					</div>
+					<div class="unslider-arrow prev"></div>
+					<div class="unslider-arrow next"></div>
+				</div>
+
+				</div>
+
+
+			</div>
+<!--banner end-->
+<!--feature start-->
+	<section>
+		<div class="wp">
+			<ul class="feature">
+				<li class="feature1">
+					<img class="pic" src="/static/images/feature1.png"/>
+					<p class="center">天釜提供</p>
+				</li>
+				<li class="feature2">
+					<img class="pic" src="/static/images/feature2.png"/>
+					<p class="center">课程最新</p>
+				</li>
+				<li class="feature3">
+					<img class="pic" src="/static/images/feature3.png"/>
+					<p class="center">多方授课</p>
+				</li>
+				<li class="feature4">
+					<img class="pic" src="/static/images/feature4.png"/>
+					<p class="center">数据真实</p>
+				</li>
+			</ul>
+		</div>
+	</section>
+<!--feature end-->
+<!--module1 start-->
+	<section>
+		<div class="module">
+			<div class="wp">
+				<h1>公开课程</h1>
+				<div class="module1 eachmod">
+					<div class="module1_1 left">
+						<img width="228" height="614" src="/static/images/module1_1.jpg"/>
+						<p class="fisrt_word">多方授课<br/>天釜提供</p>
+						<a class="more" href="/course/list/">查看更多课程 ></a>
+					</div>
+					<div class="right group_list">
+						<div class="module1_2 box">
+							<div class="imgslide2">
+								<ul class="imgs">
+                                    {% for course in courses %}
+                                    <li>
+                                        <a href="/course/detail/{{ course.id }}/">
+                                            <img width="470" height="300" src="{{ MEDIA_URL }}{{ course.image }}" />
+                                        </a>
+                                    </li>
+                                    {% endfor %}
+								</ul>
+							</div>
+							<div class="unslider-arrow2 prev"></div>
+							<div class="unslider-arrow2 next"></div>
+						</div>
+                    {% for banner_course in banner_courses %}
+                            <div class="module1_{{ forloop.counter|add:2 }} box">
+                                <a href="/course/detail/{{ banner_course.id }}">
+                                    <img width="233" height="190" src="{{ MEDIA_URL }}{{ banner_course.image }}"/>
+                                </a>
+                                <div class="des">
+                                    <a href="/course/detail/{{ banner_course.id }}">
+                                        <h2 title="django入门">{{ banner_course.name }}</h2>
+                                    </a>
+                                    <span class="fl">难度：<i class="key">{{ banner_course.get_degree_display }}</i></span>
+                                    <span class="fr">学习人数：{{ banner_course.students }}</span>
+                                </div>
+                                <div class="bottom">
+                                    <span class="fl" title="慕课网">{{ banner_course.course_org.name}}</span>
+                                    <span class="star fr">{{ banner_course.fav_nums }}</span>
+                                </div>
+                            </div>
+                    {% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section>
+		<div class="module greybg">
+			<div class="wp">
+				<h1>课程分类</h1>
+				<div class="module3 eachmod">
+					<div class="module3_1 left">
+						<img width="228" height="463" src="/static/images/module3_1.jpg"/>
+						<p class="fisrt_word">天釜名作<br/>权威认证</p>
+						<a class="more" href="/org/list/">查看更多 ></a>
+					</div>
+					<div class="right">
+						<ul>
+                            {% for course_org in course_orgs %}
+                                <li class="{% if forloop.counter|divisibleby:'5' %}five{% endif%}">
+                                    <a href="/org/home/{{ course_org.id }}/">
+                                        <div class="company">
+                                            <img width="184" height="100" src="{{ MEDIA_URL }}{{ course_org.image }}"/>
+                                            <div class="score">
+                                                <div class="circle">
+                                                    <h2>{{ course_org.tag }}</h2>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p><span class="key" title="{{ course_org.name }}">{{ course_org.name }}</span></p>
+                                    </a>
+                                </li>
+                            {% endfor %}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}
+{% block custom_js %}
+    <script type="text/javascript" src="/static/js/index.js"></script>
+{% endblock %}

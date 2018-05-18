@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}天釜在线 - 天釜共享在线网{% endblock %}
+
+{% block custom_bread %}
+    <section>
+        <div class="wp">
+            <ul  class="crumbs">
+                <li><a href="/">首页</a>></li>
+                <li>任务发布</li>
+            </ul>
+        </div>
+    </section>
+{% endblock %}
+
+{% block content %}
+    <section>
+	<div class="wp butler_list_box list">
+	<div class='left'>
+		<div class="butler_list layout">
+			<div class="head">
+				<ul class="fl tab_header">
+					<li class="active"><a href="">全部</a> </li>
+				</ul>
+                <div class="fr butler-num">共<span class="key">{{ count }}</span>个任务&nbsp;&nbsp;&nbsp;</div>
+			</div>
+
+
+            {% for task in all_tasks %}
+                <dl class="des" style="height: auto">
+                            <h1>活动主题：<span>{{ task.theme }}</span></h1><br/>
+							<h2>组织机构：<span>{{ task.organizer }}</span></h2><br/>
+                            <h2>作品要求：<span>{{ task.require |safe }}</span></h2><br/>
+                            <h2>时间安排：<span>{{ task.plan |safe  }}</span></h2><br/>
+                            <h2>活动官网：<span>{{ task.url }}</span></h2><br/>
+                            <h2>资料下载：
+                                <span class="downlist">
+                                    <span ><i class="aui-iconfont aui-icon-file"></i>&nbsp;&nbsp;{{ task.theme }}</span>
+                                    <a href="{{ MEDIA_URL }}{{ task.download }}" class="downcode" target="_blank" download="" data-id="274" title="">下载</a>
+                            </span>
+                                </h2><br/><br/>
+                </dl>
+            {% endfor %}
+
+		</div>
+    </div>
+    </div>
+</section>
+{% endblock %}

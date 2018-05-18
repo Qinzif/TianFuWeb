@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+{% block title %}天釜在线 - 天釜共享在线网{% endblock %}
+
+{% block custom_bread %}
+    <section>
+        <div class="wp">
+            <ul  class="crumbs">
+                <li><a href="/">首页</a>></li>
+                <li>天釜在线</li>
+            </ul>
+        </div>
+    </section>
+{% endblock %}
+
+{% block content %}
+    <section>
+	<div class="wp butler_list_box list">
+	<div class='left'>
+		<div class="butler_list layout">
+			<div class="head">
+				<ul class="fl tab_header">
+					<li class="{% ifequal sort '' %}active{% endifequal %}"><a href="?sort=">全部</a> </li>
+					<li class="{% ifequal sort 'hot' %}active{% endifequal %}"><a href="?sort=hot">人气 &#8595;</a></li>
+				</ul>
+                <div class="fr butler-num">共<span class="key">{{ team_nums }}</span>个团队&nbsp;&nbsp;&nbsp;</div>
+			</div>
+            {% for team in all_teams %}
+                <dl class="des">
+					<dt>
+						<a href="/org/team/detail/{{ team.id }}/">
+                            <div class="picpic">
+                                <img width="100" height="100" class="scrollLoading" src="{{ MEDIA_URL }}{{ team.image }}"/>
+                            </div>
+                        </a>
+						<div class="btn">
+							<div class="fr btn2 bdsharebuttonbox"
+                                 data-text="工作室-李同学-天釜"
+                                 data-desc="我在#慕课网#发现了同学“fr”，对学习中的小伙伴很有帮助，一起来看看吧。"
+                                 data-comment="奥巴马金牌讲师，从业年限：5年"
+                                 >
+                                <span class="fl">天釜</span>
+                                <a href="#" class="bds_more" data-cmd="more"></a>
+                            </div>
+						</div>
+					</dt>
+					<dd>
+						<a href="/org/team/detail/{{ team.id }}/">
+                            <h1>{{ team.name }}<span class="key picbig">专业团队</span></h1>
+                        </a>
+						<ul class="cont">
+							<li>成立年限：<span>{{ team.found_years }}年</span></li>
+							<li>所属院系：<span>{{ team.work_department }}</span></li>
+                            <li>地址：<span>{{ team.location }}</span></li>
+							<li>规模：<span>{{ team.stu_nums }}</span></li>
+                            <li>负责人1：<span>{{ team.principal1 }}</span></li>
+                            <li>电话：<span>{{ team.mobile1 }}</span></li>
+                            <li>负责人2：<span>{{ team.principal2 }}</span></li>
+                            <li>电话：<span>{{ team.mobile2 }}</span></li>
+                        </ul>
+					</dd>
+                    <a class="buy buyservice" href="/org/team/detail/{{ team.id }}/"><br/>查看<br/>详情</a>
+
+                </dl>
+                        <h2><span>&nbsp;&nbsp;&nbsp;&nbsp;团队组成：<br/></span>{{ team.group |safe  }}</h2><br/>
+                        <h2><span>&nbsp;&nbsp;&nbsp;&nbsp;团队简介：<br/></span>{{ team.points |safe  }}</h2><br/>
+            {% endfor %}
+		</div>
+{#		<div class="pageturn">#}
+{#            <ul class="pagelist">#}
+{##}
+{##}
+{##}
+{##}
+{##}
+{#                            <li class="active"><a href="?page=1">1</a></li>#}
+{##}
+{##}
+{##}
+{##}
+{##}
+{#                            <li><a href="?page=2" class="page">2</a></li>#}
+{##}
+{##}
+{##}
+{##}
+{#                    <li class="long"><a href="?page=2">下一页</a></li>#}
+{##}
+{##}
+{#            </ul>#}
+{#        </div>#}
+	</div>
+{#	<div class="right layout">#}
+{#		<div class="head">讲师排行榜</div>#}
+{##}
+{#            <dl class="des">#}
+{#                <span class="num fl">1</span>#}
+{#                <a href="/diary/hk_detail/6/">#}
+{#                    <dt>#}
+{#                        <img width="50" height="50" class="scrollLoading"  src="../media/teacher/2016/11/aobama_CXWwMef.png"/>#}
+{#                    </dt>#}
+{#                </a>#}
+{#                <dd>#}
+{#                    <a href="/diary/hk_detail/6/">#}
+{#                        <h1 title="bobby">bobby</h1>#}
+{#                    </a>#}
+{#                    <p>工作年限：<span>5年</span></p>#}
+{#                </dd>#}
+{#            </dl>#}
+{##}
+{#            <dl class="des">#}
+{#                <span class="num fl">1</span>#}
+{#                <a href="/diary/hk_detail/6/">#}
+{#                    <dt>#}
+{#                        <img width="50" height="50" class="scrollLoading"  src="../media/teacher/2016/11/aobama.png"/>#}
+{#                    </dt>#}
+{#                </a>#}
+{#                <dd>#}
+{#                    <a href="/diary/hk_detail/6/">#}
+{#                        <h1 title="还是bobby">还是bobby</h1>#}
+{#                    </a>#}
+{#                    <p>工作年限：<span>5年</span></p>#}
+{#                </dd>#}
+{#            </dl>#}
+{##}
+{##}
+{#	</div>#}
+    </div>
+</section>
+{% endblock %}

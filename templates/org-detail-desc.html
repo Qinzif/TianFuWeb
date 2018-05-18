@@ -1,0 +1,14 @@
+{% extends 'org_base.html' %}
+{% block title %}课程手记 {% endblock %}
+{% block right_form %}
+    <div class="right companycenter layout" >
+        <div class="head">
+            <h1>课程手记</h1>
+        </div>
+        <div class="des">
+
+            <p><p>&nbsp; &nbsp;</p><h1 class="ue_t" label="Title center" name="tc" style="border-bottom-color:#cccccc;border-bottom-width:2px;border-bottom-style:solid;padding:0px 4px 0px 0px;text-align:center;margin:0px 0px 20px;">{{ course_org.name }}</h1><p style="text-align:center;">{{ course_org.desc |safe  }}</p></p>
+
+        </div>
+    </div>
+{% endblock %}

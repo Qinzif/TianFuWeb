@@ -1,0 +1,62 @@
+{% extends "usercenter-base.html" %}
+{% block title %}我的收藏 - 天釜共享在线网{% endblock %}
+
+<!--crumbs start-->
+{% block custom_bread %}
+    <section>
+        <div class="wp">
+            <ul  class="crumbs">
+                <li><a href="/">首页</a>></li>
+                <li><a href="/users/info/">个人中心</a>></li>
+                <li>我的收藏</li>
+            </ul>
+        </div>
+    </section>
+{% endblock %}
+{% block right_content %}
+    <div class="right" >
+            <div class="personal_des Releasecont">
+                <div class="head">
+                    <h1>我的收藏</h1>
+                </div>
+            </div>
+            <div class="personal_des permessage">
+                <div class="head">
+                    <ul class="tab_header messagehead">
+                        <li ><a href="/users/myfav/org/">课程分类</a> </li>
+                        <li class="active"><a href="/users/myfav/team/">工作室 </a></li>
+                        <li><a href="/users/myfav/course/">公开课程</a></li>
+                    </ul>
+                </div>
+                <div class="messagelist">
+                    {% for team in team_list %}
+                    <div class=" butler_list butler-fav-box">
+                        <dl class="des users">
+                            <dt>
+                                <a href="/org/team/detail/{{ team.id }}/">
+                                    <img width="100" height="100" src="{{ MEDIA_URL }}{{ team.image }}"/>
+                                </a>
+                            </dt>
+                            <dd>
+                                <h1>
+                                    <a href="/org/team/detail/{{ team.id }}/">
+                                        {{ team.name }}<span class="key">认证团队</span>
+                                    </a>
+                                </h1>
+                                <ul class="cont clearfix">
+                                    <li class="time">成立年限：<span>{{ team.found_years }}年</span></li>
+                                    <li class="c7">规模：<span>{{ team.stu_nums }}人</span></li>
+                                </ul>
+                                <ul class="cont clearfix">
+                                    <li class="time">所属院系：<span>{{ team.work_department }}</span></li>
+                                    <li class="c7">地址：<span>{{ team.location }}</span></li>
+                                </ul>
+                            </dd>
+                            <div class="delete jsDeleteFav_teacher" data-favid="{{ team.id }}"></div>
+                        </dl>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+{% endblock %}
